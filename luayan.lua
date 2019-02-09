@@ -1134,9 +1134,6 @@ function readScript(script, scope, scopeType, returnLen, functionName)
 			return unpack(match,2)
 		end
 	end
-	if true then
-		return read()
-	end
 	local result = {pcall(read)}
 	if result[1] then
 		return unpack(result,2)
