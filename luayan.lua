@@ -665,6 +665,10 @@ function readExpression(script, scope, isUnary, processCall)
 	return script, unpack(value)
 end
 local function readLine(script, scope)
+	if scope and (not scope["*nil"]) then
+		globals = scope
+		scope = newChildEnv(scope)
+	end
 	local word; script, word = matchWord(script)
 	if word then
 		if word == "local" then
@@ -1086,6 +1090,8 @@ local function readLine(script, scope)
 			script, processCall[1] = readExpression(sub(script,n),scope)
 			n = matchstr(script,"^%s*%)()")
 			script = readExpression(sub(script,n), scope, nil, processCall)
+		else
+			error("unexpected character.")
 		end
 	end
 	return script
@@ -1128,6 +1134,9 @@ function readScript(script, scope, scopeType, returnLen, functionName)
 			return unpack(match,2)
 		end
 	end
+	if true then
+		return read()
+	end
 	local result = {pcall(read)}
 	if result[1] then
 		return unpack(result,2)
@@ -1144,13 +1153,13 @@ function readScript(script, scope, scopeType, returnLen, functionName)
 			error(errObj)
 		else
 			local line = select(2,gsub(iscript,"\n",""))-select(2,gsub(script,"\n",""))+2
-			local errString = "[LuaLoader]:"..line..": in main"
+			local errString = "[LuaYan]:"..line..": in main"
 			local ln
 			while type(errObj.err) == "table" do
 				errObj = errObj.err
 				if errObj.func then
 					ln = select(2, gsub(matchstr(iscript,errObj.match),"\n",""))+errObj.line
-					errString = "[LuaLoader]:"..ln..":"..errObj.func.."\n"..errString
+					errString = "[LuaYan]:"..ln..":"..errObj.func.."\n"..errString
 				end
 			end
 			if ln then
@@ -1160,8 +1169,8 @@ function readScript(script, scope, scopeType, returnLen, functionName)
 			else
 				ln = line
 			end
-			errString = "[LuaLoader]:"..ln..matchstr(errObj.err,"%d+:(.*)").."\n"..errString
-			print(errString)
+			errString = "[LuaYan]:"..ln..matchstr(errObj.err,"%d+:(.*)").."\n"..errString
+			error(errString)
 		end
 	end
 end
