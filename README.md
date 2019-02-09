@@ -10,7 +10,7 @@ local loader = require("luayan")
 And use one of the functions `loader.readScript`, `loader.readLine`, `loader.readExpression`, `loader.removeComments`.
 ## Functions
 ### readScript ( script, environment )
-Loads a given string in a given environment.<br/>
+Loads a given string in a given environment.<br/><br/>
 **Example:**
 ```lua
 local loader = require("luayan")
@@ -23,7 +23,9 @@ loader.readScript( [[
 ### readLine ( script, environment )
 Loads the first line or block of code in an environment.<br/>
 Returns the remaining script.<br/>
-> This function doesn't remove comments before reading.<br/>
+> This function doesn't remove comments before reading.
+
+<br/>
 **Example:**
 ```lua
 local loader = require("luayan")
@@ -39,7 +41,10 @@ print(script) --prints [[print("Hello, World!")]]
 Evaluates an expression in an environment.<br/>
 Returns the remaining script after the expression, the expression value(s)<br/>
 If unary is true, it will stop before the first operator (unless it's the ^ operator)<br/>
-> This function doesn't remove comments before reading.<br/>
+> This function doesn't remove comments before reading.
+
+
+<br/>
 **Example:**
 ```lua
 local loader = require("luayan")
@@ -51,7 +56,7 @@ print( loader.readExpression( [[1 + 8 / 2 unary example]], {}, true ) )
 ```
 ### removeComments ( script )
 Removes all the comments in a script.<br/>
-Returns the script without comments.<br/>
+Returns the script without comments.<br/><br/>
 **Example:**
 ```lua
 local loader = require("luayan")
@@ -70,7 +75,7 @@ You can add other operators by editing the `operators` table in the source code,
 ## Assignment Operators
 Another thing that this loader adds is the assignment operators which are:<br/>
 `+=, -=, *=, /=, //=, %=, ^=, ..=, and=, or=`<br/>
-The bitwise edition also adds bitwise assignment operators such as `>>=, |=, ~=`
+The bitwise edition also adds bitwise assignment operators such as `>>=, |=, ~=`<br/><br/>
 **Example:**
 ```lua
 local loader = require("luayan")
