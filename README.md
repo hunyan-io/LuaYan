@@ -1,7 +1,7 @@
 # LuaYan
 ## About
-LuaYan is an easy-to-use system that replaces the load/loadstring function in controled environments where such functionalities are limited or blocked, written in vanilla lua.<br/>
-It allows the user to easily add or modify operators and also introduces new assignment operators.
+LuaYan is an easy-to-use system that replaces the load/loadstring function in controlled environments where such functionalities are limited or blocked, written in vanilla lua.<br/>
+It also allows the user to easily add or modify operators and introduces new assignment operators.
 ## How to use
 All you need to do is to require the module.<br/>
 ```lua
