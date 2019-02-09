@@ -44,7 +44,6 @@ If unary is true, it will stop before the first operator (unless it's the ^ oper
 > This function doesn't remove comments before reading.
 
 
-<br/>
 **Example:**
 ```lua
 local loader = require("luayan")
