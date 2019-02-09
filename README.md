@@ -25,7 +25,7 @@ Loads the first line or block of code in an environment.<br/>
 Returns the remaining script.<br/>
 > This function doesn't remove comments before reading.
 
-<br/>
+
 **Example:**
 ```lua
 local loader = require("luayan")
