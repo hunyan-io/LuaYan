@@ -5,7 +5,7 @@ LuaYan loader v0.1 bitwise edition
 The loader was written in lua 5.1 and was also tested in lua 5.3
 
 This edition is supposed to add bitwise operators:
-& bitwise and
+& bitwise and 
 | bitwise or
 ~ bitwise xor
 ~ (unary) bitwise not
