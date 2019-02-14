@@ -442,7 +442,7 @@ function readExpression(script, scope, isUnary, processCall)
 										value = scope["..."]
 									end
 								else
-									local op, n = matchstr(script,"^%s*"..unaryPattern.."()") 
+									local op, n = matchstr(script,"^%s*("..unaryPattern..")()") 
 									if n then
 										if not unaryOperators[op] then
 											error("error")
