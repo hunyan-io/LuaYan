@@ -22,11 +22,11 @@ local unpack = table.unpack
 
 --[['#' OPERATOR / UNPACK FIX]]--
 local function len(tab)
-    local i = 0
-    for k in next, tab do
-        i = type(k) == "number" and k or i
-    end
-    return i
+	local i = 0
+	for k in next, tab do
+		i = type(k) == "number" and k or i
+	end
+	return i
 end
 do
 	local upk = unpack
@@ -1193,14 +1193,14 @@ end
 
 
 return {
-	readExpression = function(script, env, unary)
-						return handleError(readExpression, script, env, nil, unary)
-					end,
-	readLine = 	function(script, env) 
-					return handleError(readLine, script, env)
-				end,
-	readScript = function(script, env, remComments)
-					return handleError(readScript, script, env, not (remComments == false), "main", 0)
-				end,
-	removeComments = removeComments
+	readExpression	=	function(script, env, unary)
+							return handleError(readExpression, script, env, nil, unary)
+						end,
+	readLine		=	function(script, env) 
+							return handleError(readLine, script, env)
+						end,
+	readScript		=	function(script, env, remComments)
+							return handleError(readScript, script, env, not (remComments == false), "main", 0)
+						end,
+	removeComments 	=	removeComments
 }
