@@ -3,7 +3,8 @@
 LuaYan is an easy-to-use system that replaces the Lua load/loadstring function in controlled environments where such functionalities are limited or blocked, written in pure Lua.<br/>
 It also allows the user to easily add or modify operators and introduces new assignment operators.
 ## How to use
-All you need to do is to require the module.<br/>
+No dependencies are needed.<br/>
+Just require the module.<br/>
 ```lua
 local loader = require("luayan")
 ```
