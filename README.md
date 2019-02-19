@@ -38,12 +38,4 @@ local script = [==[
 ]==]
 
 loader.readScript(script, env) --> a test b c
-
-print(test) --> nil
-
-script = loader.readLine(script, _G) --reads function and return the remaining script
-
-print(test) --> function
-
-loader.readLine(script, _G) --> a test b c
 ```
