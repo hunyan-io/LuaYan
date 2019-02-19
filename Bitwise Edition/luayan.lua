@@ -1200,7 +1200,7 @@ local function handleError(func, script, scope, remComments, ...)
 	if remComments then
 		script = removeComments(script, true)
 	end
-	scope = newChildEnv(globals, {})
+	scope = newChildEnv(globals)
 	fullScriptLen, currentPosition = #script, 0
 	local result = {pcall(func, script, scope, ...)}
 	if result[1] then
@@ -1215,14 +1215,14 @@ end
 
 
 return {
-	readExpression = function(script, env, unary, remComments)
-						return handleError(readExpression, script, env, remComments, unary)
+	readExpression = function(script, env, unary)
+						return handleError(readExpression, script, env, nil, unary)
 					end,
-	readLine = 	function(script, env, remComments) 
-					return handleError(readLine, script, env, remComments)
+	readLine = 	function(script, env) 
+					return handleError(readLine, script, env)
 				end,
 	readScript = function(script, env, remComments)
-					return handleError(readScript, script, env, remComments == nil or remComments == true, "main", 0)
+					return handleError(readScript, script, env, not (remComments == false), "main", 0)
 				end,
 	removeComments = removeComments
 }
