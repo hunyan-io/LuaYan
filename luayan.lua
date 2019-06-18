@@ -22,16 +22,16 @@ local unpack = table.unpack
 
 --[['#' OPERATOR / UNPACK FIX]]--
 local function len(tab)
-	local i = 0
-	for k in next, tab do
-		i = type(k) == "number" and k or i
-	end
-	return i
+    local i = 0
+    for k in next, tab do
+        i = type(k) == "number" and k or i
+    end
+    return i
 end
 do
 	local upk = unpack
 	unpack = function(tab, i, j)
-		return upk(tab, i, j or len(tab))
+		return upk(tab, i or 1, j or len(tab))
 	end
 end
 
@@ -1184,7 +1184,7 @@ local function handleError(func, script, scope, remComments, ...)
 	if result[1] then
 		return unpack(result, 2)
 	else
-		error(result[2])
+		--error(result[2]) --this is for debug.
 		currentPosition = currentPosition + fullScriptLen - #currentScript
 		local line = select(2, gsub(sub(script,1,currentPosition), "\n", "")) + 1
 		error("[LuaYan]:"..line..":"..matchstr(result[2] or "0:","%d+:(.*)$"))
@@ -1193,14 +1193,14 @@ end
 
 
 return {
-	readExpression	=	function(script, env, unary)
-							return handleError(readExpression, script, env, nil, unary)
-						end,
-	readLine		=	function(script, env) 
-							return handleError(readLine, script, env)
-						end,
-	readScript		=	function(script, env, remComments)
-							return handleError(readScript, script, env, not (remComments == false), "main", 0)
-						end,
-	removeComments 	=	removeComments
+	readExpression = function(script, env, unary)
+						return handleError(readExpression, script, env, nil, unary)
+					end,
+	readLine = 	function(script, env)
+					return handleError(readLine, script, env)
+				end,
+	readScript = function(script, env, remComments)
+					return handleError(readScript, script, env, not (remComments == false), "main", 0)
+				end,
+	removeComments = removeComments
 }
